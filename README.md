@@ -6,6 +6,11 @@ by Aleksandr Piliugin
 - Telegram: **@bebra_smell**
 
 ## Installation
+Firstly, clone this repo:
+```
+git clone @bebrasmell/optimacros
+```
+
 ### via Docker
 
 Package already includes test MongoDB server with default configuration:
@@ -67,12 +72,13 @@ Lists all **Cars**.
 node build/index.js list
 ```
 Options:
+- ```-s, --sort brand``` – sorts list by id (default);
 - ```-s, --sort brand``` – sorts list by brand;
 - ```-s, --sort model``` – sorts list by model;
 - ```-s, --sort year``` – sorts list by year;
 - ```-s, --sort price``` – sorts list by price;
 
-> By default, list is sorted by ID (identically to Time added).
+> By default, list is sorted by ID (identical to Time added).
 
 #### Read
 Reads a **Car** info with specified ```id```.
