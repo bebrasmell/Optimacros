@@ -3,6 +3,7 @@ import { Car, CarFields, CarFlat } from "../models/car.types.js";
 import Table from "cli-table";
 import chalk from "chalk";
 
+// A list of questions to be asked
 type DefQuestion<T> = (arg0?: T) => Question;
 const BRAND_Q: DefQuestion<string> = (def?: string) => ({
     type: "input",
@@ -39,8 +40,15 @@ const PRICE_Q: DefQuestion<number> = (def?: number) => ({
     }
 });
 
+/**
+ * View layer for comumnicating via console
+ */
 export class CarView {
-    /** Prompts */
+    /**
+     * Asks to provide Car information
+     * @param def Default Car values
+     * @returns Complete and valid Car fields
+     */
     static async model(def?: CarFlat): Promise<CarFlat> {
         console.log(chalk.bgGray(" Please enter car details "));
         
@@ -51,6 +59,11 @@ export class CarView {
             PRICE_Q(def?.price)
         ]);
     }
+    /**
+     * Car delete operation confirmation prompt
+     * @param car Car to be asked about
+     * @returns An answer (boolean)
+     */
     static async request_delete(car: Car): Promise<boolean> {
         return (await inquirer.prompt([
             {
@@ -61,12 +74,18 @@ export class CarView {
         ])).accept;
     }
 
-    /** Display */
-    // Messages
+    /**
+     * Notifies of a success Create operation
+     * @param car Car info
+     */
     static createSuccess(car: Car): void {
         console.log("\n" + chalk.green('Car'), car.id, chalk.green('created successfully.'), "\n");
         CarView.display(car);
     }
+    /**
+     * Notifies of a sorting order incompatibility
+     * @param car Car info
+     */
     static errorField(field: string): void {
         console.log(
             chalk.red("Error:"),
@@ -74,6 +93,11 @@ export class CarView {
             chalk.gray(field),
         );
     }
+    /**
+     * Displays a list of Cars
+     * @param cars Cars to be displayed
+     * @param sort Sorting order
+     */
     static displayList(cars: Car[], sort?: CarFields) {
         console.log(chalk.bgGray(" List of cars" + (sort? " Sorted by "+sort : "") + " "));
         const table = new Table({
@@ -94,6 +118,10 @@ export class CarView {
         ]);
         console.log(table.toString());
     }
+    /**
+     * Displays Car info
+     * @param car Car info to be displayed
+     */
     static display(car: Car): void {
         console.log(chalk.gray("Id: "+ car.id));
         console.log(chalk.gray("Brand:\t"), car.brand);
@@ -101,6 +129,9 @@ export class CarView {
         console.log(chalk.gray("Year:\t"), car.year.toString());
         console.log(chalk.gray("Price:\t"), car.price.toFixed(2));
     }
+    /**
+     * Notifies of successful removal
+     */
     static deleteSuccess(): void {
         console.log(chalk.green("Car has been deleted"));
     }

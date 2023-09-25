@@ -3,7 +3,12 @@ import { InjectionToken, Injector, Provider } from './module.js';
 import { AppConfig } from '../app/app.types.js';
 import { CommonView } from '../view/common.view.js';
 
+/** Public Injection Token for HTTP Module */
 export const HTTP: InjectionToken = Injector("HTTP");
+
+/**
+ * This module handles all HTTP requests using Axios
+ * */
 export class HttpModule implements Provider {
     #url: string;
 
