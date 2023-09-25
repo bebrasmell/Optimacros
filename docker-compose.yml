@@ -1,0 +1,13 @@
+services:
+  mongo:
+    image: mongo:latest
+    restart: always
+
+  api:
+    restart: always
+    build: ./server
+    container_name: omt-server-0
+    ports:
+      - 5050:5050
+    links:
+      - mongo:mongo
