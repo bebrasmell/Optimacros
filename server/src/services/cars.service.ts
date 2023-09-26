@@ -14,9 +14,6 @@ export abstract class CarsService {
     }, async (req, res) => {
         try {
             const data = req.body;
-
-            data.year = Math.floor(data.year);
-
             const car = await Car.create(data);
 
             return CarsView.create(res, car);    
@@ -58,9 +55,6 @@ export abstract class CarsService {
     }, async (req, res) => {
         try {
             const data = req.body;
-            
-            if (data.year) data.year = Math.floor(data.year);
-            
             const car = await Car.read(data.id);
     
             if (!car) return CommonView.notFound(res);
