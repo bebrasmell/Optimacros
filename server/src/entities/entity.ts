@@ -1,5 +1,5 @@
 import { Model, Schema, model, connect } from "mongoose";
-import { Deconstructor, Keys } from "utils/types/type.utils.js";
+import { Deconstructor, Keys } from "../utils/types/type.utils.js";
 import { Id } from "./entity.z.js";
 
 // Exclude this fields so nothing could modify them

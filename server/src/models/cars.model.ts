@@ -3,7 +3,7 @@ import { Entity } from "../entities/entity.js";
 import { CarUpdate, NewCar } from "./car.types.js";
 import { CarSchema } from "../entities/car.schema.js";
 import { Id } from "../entities/entity.z.js";
-import { Keys } from "utils/types/type.utils";
+import { Keys } from "../utils/types/type.utils";
 
 /**
  * Car model
